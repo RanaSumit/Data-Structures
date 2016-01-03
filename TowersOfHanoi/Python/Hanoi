@@ -1,0 +1,13 @@
+def Hanoi(n, start, dest, aux):
+    if n>=1:
+        Hanoi(n-1, start, aux, dest)
+        moveDisk(start, dest)
+        Hanoi(n-1, aux, dest, start)
+
+def moveDisk(fp, tp):
+    print("moving disk from", fp, "to", tp)
+
+
+Hanoi(3,"A","B","C")
+
+
