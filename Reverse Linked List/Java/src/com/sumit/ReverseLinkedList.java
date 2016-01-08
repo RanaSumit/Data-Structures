@@ -13,8 +13,13 @@ public class ReverseLinkedList {
         System.out.println("Original: ");
         myList.display();
 
-        System.out.println("Reverse: ");
-        myList.printReverseLinkedList(myList.head);
+        System.out.println("Using Recursive Reverse: ");
+        myList.recursiveReverse(myList.head);
+
+        System.out.println("\nUsing Iterative Reverse: ");
+        myList.iterativeReverse(myList.head);
+
+
     }
     void createLinkedList(String data) {
         if(head == null || head.getData() == null || head.getData().isEmpty()) {
@@ -30,12 +35,38 @@ public class ReverseLinkedList {
         }
     }
 
-    void printReverseLinkedList(MyLinkedList node) {
+    void recursiveReverse(MyLinkedList node) {
         if(node != null) {
-            printReverseLinkedList(node.getNext());
+            recursiveReverse(node.getNext());
             System.out.print(" " + node.getData());
         }
     }
+
+    void iterativeReverse(MyLinkedList node){
+
+        MyLinkedList prevNode, currNode, nextNode;
+
+            prevNode = null;
+            currNode = node;
+        //System.out.print("Current Node: " + currNode.getData()+"\n");
+            while(currNode != null)
+
+            {
+                nextNode = currNode.getNext();
+                currNode.setNext(prevNode);
+                prevNode = currNode;
+                currNode = nextNode;
+
+            }
+        while(prevNode != null) {
+            System.out.print(" " + prevNode.getData());
+            prevNode = prevNode.getNext();
+        }
+
+    }
+
+
+
     void display()
     {
         MyLinkedList list = head;
@@ -46,7 +77,7 @@ public class ReverseLinkedList {
             System.out.print(list.getData()+" ");
             list = list.getNext();
         }
-        System.out.println(list.getData()+"\n");
+        System.out.println(list.getData());
     }
 }
 class MyLinkedList {
