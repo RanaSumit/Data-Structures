@@ -21,7 +21,7 @@ public class TowersOfHanoi {
 
     public static void main(String[] args) {
 	TowersOfHanoi TOH = new TowersOfHanoi();
-        System.out.println("Enter number if disks: ");
+        System.out.println("Enter number of disks: ");
         Scanner scanner = new Scanner(System.in);
         int discs = scanner.nextInt();
         TOH.logic(discs,"A", "B", "C");
