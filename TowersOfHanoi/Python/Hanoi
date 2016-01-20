@@ -4,6 +4,7 @@ def Hanoi(n, start, dest, aux):
         moveDisk(start, dest)
         Hanoi(n-1, aux, dest, start)
 
+
 def moveDisk(fp, tp):
     print("moving disk from", fp, "to", tp)
 

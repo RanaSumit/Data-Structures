@@ -6,6 +6,7 @@ public class TowersOfHanoi {
 
     public void logic (int n, String start, String aux, String dest)
     {
+
         if(n==1)
         {
             System.out.println(start + "->" + dest);
