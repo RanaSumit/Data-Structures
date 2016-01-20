@@ -1,9 +1,20 @@
 package com.sumit;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
-	    int array[] = {23, 34, 2, 99, 3, 21, 44, 101, 45, 100, 79, 39};
+
+        System.out.println("Enter Number of elements: ");
+        Scanner scan = new Scanner(System.in);
+        int n = scan.nextInt();
+        int array[] = new int[n];
+        System.out.println("Enter " + n + " integer elements: ");
+        for(int i = 0; i < n; i++)
+        {
+            array[i] = scan.nextInt();
+        }
 
         // Printing unsorted array
         System.out.println("Unsorted Array: ");
