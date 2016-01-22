@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class LinkedList {
 
-
     Node head;
     class Node
     {
         int data;
         Node next;
+
         Node(int d)
         {
             data = d;
@@ -19,11 +19,12 @@ public class LinkedList {
 
     public void removeDuplicates()
     {
-        Node ptr1 = null, ptr2 = null, dup = null;
-        ptr1 = head;
+        Node ptr1 = head, ptr2 = null, dup = null;
+
 
         /* Pick elements one by one */
         while (ptr1 != null && ptr1.next != null) {
+
             ptr2 = ptr1;
 
             /* Compare the picked element with rest of the elements */
@@ -35,8 +36,9 @@ public class LinkedList {
                     /* sequence of steps is important here */
                     dup = ptr2.next;
                     ptr2.next = ptr2.next.next;
-                    System.gc();
-                } else /* This is tricky */ {
+
+                } else /* This is tricky */
+                {
                     ptr2 = ptr2.next;
                 }
             }
@@ -72,10 +74,11 @@ public class LinkedList {
         {
             list.push(scan.nextInt());
         }
-
+        System.out.println("Linked List with duplicates: ");
+        list.printList();
         list.removeDuplicates();
 
-        System.out.println("Array after removal of duplicates: ");
+        System.out.println("Linked List after removal of duplicates: ");
         list.printList();
 
     }

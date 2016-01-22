@@ -30,12 +30,9 @@ public class Main {
                 j--;
             }
         }
-
-
         //recursively sort lower half
         if(low < j)
             QuickSort(arr, low, j);
-
         //recursively sort upper half
         if(i < high)
             QuickSort(arr, i, high);

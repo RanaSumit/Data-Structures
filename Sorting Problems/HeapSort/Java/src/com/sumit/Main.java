@@ -10,6 +10,11 @@ public class Main {
     public static void HeapSort(int arr[])
     {
         heapify(arr);
+        System.out.println("Heapified tree: ");
+        for(int i = 0; i < arr.length; i++)
+        {
+            System.out.print(" " + arr[i]);
+        }
         for (int i = N; i > 0; i--)
         {
             swap(arr,0, i);
@@ -57,7 +62,7 @@ public class Main {
 
         System.out.println("Enter number of integer elements to be sorted: ");
         int n = scan.nextInt();
-
+        System.out.println("Enter " + n + " integer elements: ");
         int arr[] = new int[n];
         for(int i = 0; i < n; i++)
         {
