@@ -11,7 +11,7 @@ public class Main {
     {
 
         Arrays.sort(A);
-        int minValue = 1;
+        int minValue = A[0];
         for(int value: A){
             if (value == minValue){
                 minValue++;
