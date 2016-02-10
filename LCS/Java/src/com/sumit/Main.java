@@ -3,41 +3,57 @@ package com.sumit;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader StdIn = new BufferedReader(new InputStreamReader(System.in));
-        String x = StdIn.readLine();
-        String y = StdIn.readLine();
-        int M = x.length();
-        int N = y.length();
+    public static void main(String[] args) {
 
-        // opt[i][j] = length of LCS of x[i..M] and y[j..N]
-        int[][] opt = new int[M+1][N+1];
-
-        // compute length of LCS and all subproblems via dynamic programming
-        for (int i = M-1; i >= 0; i--) {
-            for (int j = N-1; j >= 0; j--) {
-                if (x.charAt(i) == y.charAt(j))
-                    opt[i][j] = opt[i+1][j+1] + 1;
-                else
-                    opt[i][j] = Math.max(opt[i+1][j], opt[i][j+1]);
-            }
+        Scanner scan = new Scanner(System.in);
+        int N = scan.nextInt();
+        int M = scan.nextInt();
+        int[] a = new int[N];
+        int[] b = new int[M];
+        for(int i = 0; i < N; i++)
+        {
+            a[i] = scan.nextInt();
         }
-
-        // recover LCS itself and print it to standard output
-        int i = 0, j = 0;
-        while(i < M && j < N) {
-            if (x.charAt(i) == y.charAt(j)) {
-                System.out.print(x.charAt(i));
-                i++;
-                j++;
-            }
-            else if (opt[i+1][j] >= opt[i][j+1]) i++;
-            else                                 j++;
+        for(int i = 0; i < M; i++)
+        {
+            b[i] = scan.nextInt();
         }
-        System.out.println();
+        findLCS(a,b);
 
     }
+    private static void findLCS(int[] a, int[] b) {
+        int[][] lcs = new int[a.length+1][b.length+1];
+        for(int i = 0; i <= a.length; i++) {
+            for(int j = 0; j <= b.length; j++) {
+                if(i == 0 | j == 0)
+                    lcs[i][j] = 0;
+                else if(a[i-1] == b[j-1])
+                    lcs[i][j] = lcs[i-1][j-1] +1;
+                else
+                    lcs[i][j] = lcs[i-1][j] > lcs[i][j-1] ? lcs[i-1][j]:lcs[i][j-1];                       }
+        }
+
+        int[] result = new int[lcs[a.length][b.length]];
+        int index = result.length;
+        int i = a.length, j = b.length;
+        while(i > 0 && j > 0) {
+            if(a[i-1] == b[j-1]) {
+                result[index-1] = a[i-1];
+                index--; i--; j--;
+            } else {
+                if(lcs[i-1][j] > lcs[i][j-1]) {
+                    i--;
+                } else {
+                    j--;
+                }
+            }
+        }
+        for(int x:result)
+            System.out.print(x + " ");
+    }
+
 }
