@@ -7,8 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int a[] = {6,7,8};
-        int b[] = {1,2,2};
+        int a[] = {6,7,1};
+        int b[] = {6,2,2,1};
 
         System.out.print(solution(a,b));
     }
@@ -42,7 +42,6 @@ public class Main {
         /*loop through larger array*/
 
         int min_val=Integer.MAX_VALUE;
-
         for(int j=0;j<largerArr.length;j++){
 
             if(hashSet.contains(largerArr[j])){

@@ -9,76 +9,51 @@ class Islands
     //No of rows and columns
     static int row, col;
 
-    // A function to check if a given cell (row, col) can
-    // be included in DFS
-    boolean isSafe(int M[][], int r, int c,
-                   boolean visited[][])
-    {
-        // row number is in range, column number is in range
-        // and value is 1 and not yet visited
-        return (r >= 0) && (r < row) &&
-                (c >= 0) && (c < col) &&
-                (M[r][c]==1 && !visited[r][c]);
-    }
-
-    // A utility function to do DFS for a 2D boolean matrix.
-    // It only considers the 8 neighbors as adjacent vertices
-    void DFS(int M[][], int row, int col, boolean visited[][])
-    {
-        // These arrays are used to get row and column numbers
-        // of 8 neighbors of a given cell
-        int rowNbr[] = new int[] { -1, 0, 0, 1};
-        int colNbr[] = new int[] { 0, -1, 1, 0};
-
-        // Mark this cell as visited
-        visited[row][col] = true;
-
-        // Recur for all connected neighbours
-        for (int k = 0; k < 4 ; ++k)
-            if (isSafe(M, row + rowNbr[k], col + colNbr[k], visited) )
-                DFS(M, row + rowNbr[k], col + colNbr[k], visited);
-    }
-
-    // The main function that returns count of islands in a given
-    //  boolean 2D matrix
-    int countIslands(int M[][])
-    {
-        // Make a bool array to mark visited cells.
-        // Initially all cells are unvisited
-        boolean visited[][] = new boolean[row][col];
-
-
-        // Initialize count as 0 and travese through the all cells
-        // of given matrix
-        int count = 0;
-        for (int i = 0; i < row; ++i)
-            for (int j = 0; j < col; ++j)
-                if (M[i][j]==1 && !visited[i][j]) // If a cell with
-                {                                 // value 1 is not
-                    // visited yet, then new island found, Visit all
-                    // cells in this island and increment island count
-                    DFS(M, i, j, visited);
-                    ++count;
+    public int numIslands(char[][] grid) {
+        if (grid == null || grid.length == 0) {
+            return 0;
+        }
+        int result = 0;
+        boolean[][] visited = new boolean[grid.length][grid[0].length];
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (!visited[i][j] && grid[i][j] == '1') {
+                    dfs(grid, visited, i, j);
+                    result++;
                 }
-
-        return count;
+            }
+        }
+        return result;
     }
 
+    private void dfs(char[][] grid, boolean[][] visited, int i, int j) {
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || visited[i][j] || grid[i][j] == '0') {
+            return;
+        }
+        visited[i][j] = true;
+        dfs(grid, visited, i - 1, j);
+        dfs(grid, visited, i + 1, j);
+        dfs(grid, visited, i, j - 1);
+        dfs(grid, visited, i, j + 1);
+    }
     // Driver method
     public static void main (String[] args) throws java.lang.Exception
     {
         Scanner scan = new Scanner(System.in);
         row = scan.nextInt();
         col = scan.nextInt();
-        int arr[][] = new int[row][col];
+        char arr[][] = new char[row][col];
         for(int i = 0; i < row; i++)
         {
             for(int j = 0; j < col; j++)
             {
-                arr[i][j] = scan.nextInt();
+                arr[i][j] = scan.next().trim().charAt(0);;
             }
         }
+
+        System.out.print("Length: " + arr[0].length);
+
         Islands I = new Islands();
-        System.out.println("Number of islands is: "+ I.countIslands(arr));
+        System.out.println("Number of islands is: "+ I.numIslands(arr));
     }
 }
