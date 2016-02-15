@@ -31,16 +31,12 @@ public class Main {
             largerArr=A;
         }
 
-        /*put smaller array in hashmap-save memory*/
         Set<Integer> hashSet=new HashSet<Integer>();
         for(int i=0;i<smallerArr.length;i++){
 
             hashSet.add(smallerArr[i]);
 
         }
-
-        /*loop through larger array*/
-
         int min_val=Integer.MAX_VALUE;
         for(int j=0;j<largerArr.length;j++){
 
