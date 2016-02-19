@@ -27,6 +27,7 @@ class Islands
     }
 
     private void dfs(char[][] grid, boolean[][] visited, int i, int j) {
+        //System.out.print("VISITED: " + visited[i][j] );
         if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || visited[i][j] || grid[i][j] == '0') {
             return;
         }
