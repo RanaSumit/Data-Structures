@@ -30,7 +30,7 @@ public class HashTablesChainingListHeadsTest {
             {
                 case 1 :
                     System.out.println("Enter key and value");
-                    ht.insert(scan.next(), scan.nextInt() );
+                    ht.insert(scan.next(), scan.next());
                     break;
                 case 2 :
                     System.out.println("Enter key");

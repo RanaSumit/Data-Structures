@@ -1,16 +1,15 @@
 
 package com.sumit;
-import java.util.Scanner;
 
 /* Class LinkedHashEntry */
 class LinkedHashEntry
 {
     String key;
-    int value;
+    String value;
     LinkedHashEntry next;
 
     /* Constructor */
-    LinkedHashEntry(String key, int value)
+    LinkedHashEntry(String key, String value)
     {
         this.key = key;
         this.value = value;
@@ -46,24 +45,24 @@ class HashTable
             table[i] = null;
     }
     /* Function to get value of a key */
-    public int get(String key)
+    public String get(String key)
     {
         int hash = (myhash( key ) % TABLE_SIZE);
         if (table[hash] == null)
-            return -1;
+            return null;
         else
         {
             LinkedHashEntry entry = table[hash];
             while (entry != null && !entry.key.equals(key))
                 entry = entry.next;
             if (entry == null)
-                return -1;
+                return null;
             else
                 return entry.value;
         }
     }
     /* Function to insert a key value pair */
-    public void insert(String key, int value)
+    public void insert(String key, String value)
     {
         int hash = (myhash( key ) % TABLE_SIZE);
         if (table[hash] == null)
