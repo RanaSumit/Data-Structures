@@ -65,15 +65,18 @@ class HashTable
     public void insert(String key, String value)
     {
         int hash = (myhash( key ) % TABLE_SIZE);
+        System.out.println("THIS IS HASH: "+ hash);
+        System.out.println("THIS IS TABLE[HASH]: "+ table[hash]);
         if (table[hash] == null)
             table[hash] = new LinkedHashEntry(key, value);
-        else
-        {
+        else {
             LinkedHashEntry entry = table[hash];
             while (entry.next != null && !entry.key.equals(key))
                 entry = entry.next;
-            if (entry.key.equals(key))
+            if (entry.key.equals(key)){
                 entry.value = value;
+                size--;
+            }
             else
                 entry.next = new LinkedHashEntry(key, value);
         }
@@ -107,8 +110,7 @@ class HashTable
     {
         int hashVal = x.hashCode( );
         hashVal %= TABLE_SIZE;
-        if (hashVal < 0)
-            hashVal += TABLE_SIZE;
+
         return hashVal;
     }
     /* Function to print hash table */
