@@ -22,8 +22,9 @@ public class Main {
     public static void checkBraces(List<String> stringList) {
 
         List<String> result = new ArrayList<String>();
-        for(int i = 0; i < stringList.size(); i++) {
-            String string = stringList.get(0);
+        abc:for(int i = 0; i < stringList.size(); i++) {
+
+            String string = stringList.get(i);
             Stack<Character> stack = new Stack<Character>();
             for (int j = 0; j < string.length(); j++) {
 
@@ -38,10 +39,12 @@ public class Main {
                         stack.pop();
                     } else {
                         System.out.println("NO");
+                        continue abc;
                     }
                 } else {
                     if ((ch == ']' || ch == '}' || ch == ')')) {
                         System.out.println("NO");
+                        continue abc;
                     }
                 }
 
@@ -55,9 +58,5 @@ public class Main {
         }
 
     }
-
-
-
-
 
 }

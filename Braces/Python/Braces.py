@@ -1,4 +1,5 @@
 __author__ = 'ranaf'
+
 def isValidPair(left, right):
     if left == '(' and right == ')':
         return True
@@ -16,15 +17,15 @@ def solution(S):
             stack.append(symbol)
         else:
             if len(stack) == 0:
-                print("NO")
+                return 'NO'
             last = stack.pop()
             if not isValidPair(last, symbol):
-                print("NO")
+                return 'NO'
 
     if len(stack) != 0:
-        print("NO")
+        return 'NO'
     else:
-        print("YES")
+        return 'YES'
 testCases = int(input())
 i=0
 x=[]
@@ -33,5 +34,5 @@ while i<testCases:
     i=i+1
 for m in range(0,testCases):
     result = solution(x[m])
-    
+    print(result)
 
